@@ -14,6 +14,7 @@ const routes = [
     {
         path: '/',
         name: '用户管理',
+        show : true,//用于v-if="",设置是否被显示
         component: Index,
         redirect:"/UserManage",
         children: [

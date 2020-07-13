@@ -1,7 +1,7 @@
 <template>
     <div>
-        <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-
+        <el-form :model="ruleForm" status-icon :rules="rules" style="width: 60%"
+                 ref="ruleForm" label-width="100px" class="demo-ruleForm">
             <el-form-item label="姓名" prop="name">
                 <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
@@ -33,22 +33,6 @@
 <script>
     export default {
         data() {
-            var checkAge = (rule, value, callback) => {
-                if (!value) {
-                    return callback(new Error('年龄不能为空'));
-                }
-                setTimeout(() => {
-                    if (!Number.isInteger(value)) {
-                        callback(new Error('请输入数字值'));
-                    } else {
-                        if (value < 18) {
-                            callback(new Error('必须年满18岁'));
-                        } else {
-                            callback();
-                        }
-                    }
-                }, 1000);
-            };
             var validatePass = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请输入密码'));
@@ -82,13 +66,10 @@
                         {min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur'}
                     ],
                     pwd: [
-                        {validator: validatePass, trigger: 'blur'}
+                        { required: true, message: '请输入密码',validator: validatePass, trigger: 'blur'}
                     ],
                     checkPass: [
-                        {validator: validatePass2, trigger: 'blur'}
-                    ],
-                    age: [
-                        {validator: checkAge, trigger: 'blur'}
+                        { required: true, message: '请再次输入密码',validator: validatePass2, trigger: 'blur'}
                     ],
                     sex: [
                         {required: true, message: '请选择性别', trigger: 'change'}
@@ -109,11 +90,15 @@
                         .then((resp) => {
                             //请求成功回调函数
                             if(resp.data){
-                                this.$message({
-                                    message: '添加用户成功',
-                                    type: 'success'
+                               // 路由跳转
+                                this.$alert(this.ruleForm.name+'  添加成功', '提示信息', {
+                                    confirmButtonText: '确定',
+                                    callback: action => {
+                                        this.$router.push("/UserManage");
+                                    }
                                 });
                                //重置表单
+                                this.resetForm('ruleForm');
                             }
                         })
                         ;

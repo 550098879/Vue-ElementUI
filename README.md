@@ -60,3 +60,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### 注意事项
 - 前端请求参数为json格式的数据,所以后台需要使用RequestBody注解来接收
+- 使用jpa的save方法会返回当前存入的对象(包含自增的ID属性),那么手写sql如何实现呢?

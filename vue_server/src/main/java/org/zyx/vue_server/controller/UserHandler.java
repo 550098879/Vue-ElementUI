@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.zyx.vue_server.entity.User;
 import org.zyx.vue_server.repository.UserRepository;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -26,10 +27,16 @@ public class UserHandler {
     @PostMapping("/addUser")
     public boolean addUser(@RequestBody User user){
         //前端请求参数为json格式的数据,所以后台需要使用RequestBody注解来接收
-        System.out.println(user);
-        System.out.println(userRepository.save(user));
+        System.out.println(userRepository.save(user));//添加成功后会返回添加的这个对象
 
         return true;
     }
+
+    @DeleteMapping("/deleteById/{id}")
+    public boolean deleteById(@PathVariable("id") int id){
+       userRepository.deleteById(id);
+        return true;
+    }
+
 
 }
