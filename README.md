@@ -19,16 +19,16 @@ npm run build
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-#vue 工程创建及使用步骤
+# vue 工程创建及使用步骤
 - 官网下载node.js,安装 ,cmd:npm -version 测试版本
 - npm install -g @vue/cli  安装最新的vue ,vue --version 查看版本
-- vue ui (3.0) 使用ui界面创建vue工程,选择(E:\VueProject)
+- vue ui (3.0) 使用ui界面创建vue工程,选择需要创建项目的位置
 - vue add axios 安装axios的ajax插件
--  cnpm install --save element-ui 安装ElementUI
+- cnpm install --save element-ui 安装ElementUI
 
 
 
-###跨域异常
+### 跨域异常
 - 异常原因: 跨端口,跨域名请求
 - 解决方法:前段后端都可以解决这个异常
 -1.后端(SpringBoot)
@@ -51,3 +51,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ```
 
 -2.前端 https://www.cnblogs.com/sdcs/p/8484905.html
+
+
+### VUE-ElementUI
+- router
+
+
+
+### 注意事项
+- 前端请求参数为json格式的数据,所以后台需要使用RequestBody注解来接收
